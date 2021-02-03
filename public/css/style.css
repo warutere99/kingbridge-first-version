@@ -8439,7 +8439,7 @@ h1, h2, h3, h4, h5,
   .slider-text .bread {
     font-weight: 400 !important;
     position: relative;
-    line-height: .8; }
+    line-height: 1; }
 
 .featured-top {
   margin-top: -250px; }
