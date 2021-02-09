@@ -422,8 +422,8 @@ class PostAdController extends Controller
                                 $var = date_create();
                                 $date = date_format($var, 'Ymd');
                                 $imageName = $date.'-'.$item->getClientOriginalName();
-                                $item->move(public_path().'/photos/', $imageName);
-                                $url = URL::to("/").'/photos/'.$imageName;
+                                $item->storeAs('public/photos/', $imageName);
+                                $url = URL::to("/").'public/photos/'.$imageName;
                                 $arr[] = $url;
                                 $count++;
         
