@@ -118,8 +118,8 @@ class PostAdController extends Controller
                         $var = date_create();
                         $date = date_format($var, 'Ymd');
                         $imageName = $date.'-'.$item->getClientOriginalName();
-                        $item->move(public_path().'/photos/', $imageName);
-                        $url = URL::to("/").'/photos/'.$imageName;
+                        $item->storeAs('public/photos/', $imageName);
+                        $url = $imageName;
                         $arr[] = $url;
                         $count++;
 
@@ -270,8 +270,8 @@ class PostAdController extends Controller
                             $var = date_create();
                             $date = date_format($var, 'Ymd');
                             $imageName = $date.'-'.$item->getClientOriginalName();
-                            $item->move(public_path().'/photos/', $imageName);
-                            $url = URL::to("/").'/photos/'.$imageName;
+                            $item->storeAs('public/photos/', $imageName);
+                            $url = $imageName;
                             $arr[] = $url;
                             $count++;
     
@@ -423,7 +423,7 @@ class PostAdController extends Controller
                                 $date = date_format($var, 'Ymd');
                                 $imageName = $date.'-'.$item->getClientOriginalName();
                                 $item->storeAs('public/photos/', $imageName);
-                                $url = URL::to("/").'public/photos/'.$imageName;
+                                $url = $imageName;
                                 $arr[] = $url;
                                 $count++;
         
@@ -570,8 +570,8 @@ class PostAdController extends Controller
                                     $var = date_create();
                                     $date = date_format($var, 'Ymd');
                                     $imageName = $date.'-'.$item->getClientOriginalName();
-                                    $item->move(public_path().'/photos/', $imageName);
-                                    $url = URL::to("/").'/photos/'.$imageName;
+                                    $item->storeAs('public/photos/', $imageName);
+                                    $url = $imageName;
                                     $arr[] = $url;
                                     $count++;
             
