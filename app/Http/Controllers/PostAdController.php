@@ -14,7 +14,7 @@ use App\Car_make;
 use App\Car_model;
 use App\Land_ad;
 use App\County;
-use App\city;
+use App\City;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

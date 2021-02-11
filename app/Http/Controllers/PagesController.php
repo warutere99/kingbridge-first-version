@@ -8,7 +8,7 @@ use App\House_ad;
 use App\Car_ad;
 use App\Land_ad;
 use App\County;
-use App\city;
+use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
