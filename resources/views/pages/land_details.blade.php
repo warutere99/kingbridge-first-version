@@ -21,14 +21,14 @@
         $img = [];
         $img = explode(",", $land->photos);
         ?>              
-        <img id=featured class="mt-3 main" src="{{ $img[0] }}">
+        <img id=featured class="mt-3 main" src="/storage/photos/{{ $img[0] }}">
 
         <div id="slide-wrapper">
         <div class="slide-one-item home-slider owl-carousel" >
         <div id="slider">
             <ul class="thumbs mt-3">	
                 @foreach ($img as $i)
-                <img class="thumbnail thumb-img" src=" {{ $i}}">
+                <img class="thumbnail thumb-img" src=" /storage/photos/{{ $i}}">
                 @endforeach
             </ul>
 

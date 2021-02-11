@@ -88,7 +88,7 @@
                   
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url({{ strtok($appartment->photos, ',') }});">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(/storage/photos/{{ strtok($appartment->photos, ',') }});">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#"> {{$appartment->title}}</a></h2>
@@ -121,7 +121,7 @@
                   
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url({{ strtok($house->photos, ',') }});">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(/storage/photos/{{ strtok($house->photos, ',') }});">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#"> {{$house->title}}</a></h2>
@@ -154,7 +154,7 @@
                   
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url({{ strtok($land->photos, ',') }});">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(/storage/photos/{{ strtok($land->photos, ',') }});">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#"> {{$land->title}}</a></h2>

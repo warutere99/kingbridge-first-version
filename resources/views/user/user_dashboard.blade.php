@@ -83,7 +83,7 @@
                                                   <label for="tg-adone"></label>
                                               </span>
                                           </td>
-                                          <td><img src="{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
+                                          <td><img src="/storage/photos/{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
                                           <td>
                                               <h6>{{ $ad->title }}</h6>
                                               <span>Ad ID: {{ $ad->id }}</span>
@@ -115,7 +115,7 @@
                                                   <label for="tg-adone"></label>
                                               </span>
                                           </td>
-                                          <td><img src="{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
+                                          <td><img src="/storage/photos/{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
                                           <td>
                                               <h6>{{ $ad->title }}</h6>
                                               <span>Ad ID: {{ $ad->id }}</span>
@@ -147,7 +147,7 @@
                                                   <label for="tg-adone"></label>
                                               </span>
                                           </td>
-                                          <td><img src="{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
+                                          <td><img src="/storage/photos/{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
                                           <td>
                                               <h6>{{ $ad->title }}</h6>
                                               <span>Ad ID: {{ $ad->id }}</span>
@@ -179,7 +179,7 @@
                                                   <label for="tg-adone"></label>
                                               </span>
                                           </td>
-                                          <td><img src="{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
+                                          <td><img src="/storage/photos/{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
                                           <td>
                                               <h6>{{ $ad->title }}</h6>
                                               <span>Ad ID: {{ $ad->id }}</span>
