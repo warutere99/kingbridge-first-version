@@ -2,8 +2,8 @@
 @section('content')
 
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/apartment_out3.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
+<section class="hero-wrap hero-wrap-3 js-smallheight" style="background-image: url('images/apartment_out3.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay">
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
@@ -11,11 +11,11 @@
             <h1 class="mb-3 bread">land listing</h1>
           </div>
         </div>
-      </div>
+      </div></div>
      
     </section>
 
-    <section class="ftco-section contact-section">
+    <section class="ftco-section contact-section bg-light">
       <div class="container">
         <div class="row d-flex mb-2 contact-info">
         	<div class="col-lg-2 col-md-5 col-sm-5">

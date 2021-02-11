@@ -5,7 +5,7 @@
  
     <div class="container">
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start mb-4">
-        <div class="col-lg-6 py-5 px-5 m-auto">
+        <div class="col-lg-5 m-auto">
             <div class="card">
               <div class="card-body ">
              @if(session('message'))
@@ -38,7 +38,7 @@
                     <input type="checkbox" class="checkbox">
                         Keep me signed in
                 </span>
-          <button type="submit" class="btn btn-default">Login</button>
+          <button type="submit" class="btn btn-default w-50 ml-auto">Login</button>
 </form>
 
               </div>

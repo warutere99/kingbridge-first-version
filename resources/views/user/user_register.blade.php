@@ -1,11 +1,23 @@
 @extends('layouts.kingship')
 @section('content')
 
-<section class="ftco-section hero-wrap hero-wrap ">
+
+<section class="hero-wrap-3 js-smallheight" style="background-image: url('{{ asset('images')}}');" data-stellar-background-ratio="0.5">
+    <div class="container">
+       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+         <div class="col-md-9 ftco-animate pb-5">
+            <p class="breadcrumbs"><span class="mr-2"><a href="#" style="color: #D4AF37">User <i class="ion-ios-arrow-forward"></i></a></span> register <span><i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3">Register</h1>
+         </div>
+       </div>
+     </div>
+     
+   </section>
+   <section class="ftco-section contact-section bg-light">
     <div class="overlay"></div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 py-5 px-5 m-auto">
+        <div class="col-lg-6 m-auto">
             <div class="card">
               <div class="card-body">
 

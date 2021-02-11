@@ -9,6 +9,7 @@
            </div>
          </div>
        </div>
+       
 </section>
 
 <section class="ftco-section ftco-appartment-details bg-light">

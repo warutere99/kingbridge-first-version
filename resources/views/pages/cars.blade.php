@@ -2,7 +2,8 @@
 @section('content')
 
     <section class="hero-wrap hero-wrap-3 js-smallheight" style="background-image: url('{{ asset('images/subaru.jpg')}}');" data-stellar-background-ratio="0.5">
-      <div class="overlay"> <div class="container">
+      <div class="overlay">
+         <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
               <p class="breadcrumbs"><span class="mr-2">Home  <i class="ion-ios-arrow-forward"></i> </span>Cars <span><i class="ion-ios-arrow-forward"></i></span></p>
