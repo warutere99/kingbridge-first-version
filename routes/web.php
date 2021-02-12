@@ -64,7 +64,7 @@ Route :: get ('/postaddhouse', 'PagesController@postaddhouse')->name('postaddhou
 
 
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/admin/login', 'Admin\AdminsLoginController@loginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\AdminsLoginController@login')->name('admin.login');

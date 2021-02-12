@@ -11,10 +11,7 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth','verified']);
-    }
+    
 
     public function cart(){
         $arr['apartment_ads'] = Appartment_ad::where('user_id',Auth::id())->take(10)->get();

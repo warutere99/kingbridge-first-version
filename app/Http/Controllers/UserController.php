@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     use AuthenticatesUsers;
+
     public function registerform(){
         return view('user.user_register');
     }
+    
     public function register(Request $request){
         $this->validate($request,[
            'firstname'=>'required|string|max:255',
