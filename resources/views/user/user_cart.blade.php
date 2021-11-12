@@ -203,6 +203,78 @@
                         </td>
                         </tr>
                         @endforeach
+                        @foreach($bnb_ads as $ad)
+                        <tr data-category="active">
+                            <td>
+                                <span class="tom-checkbox">
+                                    <input id="tg-adone" type="checkbox" name="myads" value="myadone">
+                                    <label for="tg-adone"></label>
+                                </span>
+                            </td>
+                            <td><img src="{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px; margin-left: -28px;"></td>
+                            <td>
+                                <h6>{{ $ad->title }}</h6>
+                                <span>Ad ID: {{ $ad->id }}</span>
+                                
+                                <input type="hidden" name="bnb_ad_id[]" value="{{ $ad->id }}" multiple="true">
+                            </td>
+                            <td><h6>{{ $ad->Category->category_name }}</h6><span class="tg-adcategories">{{ $ad->Subcategory->subcategory_name }}</span></td>
+                            
+                            <td><span class="round btn-warning">Not Published</span></td>
+                            <td>
+                                <h6>{{ $ad->Package->package_name }}</h6>            
+                            </td>
+                            <td class="count-me">
+                                {{ $ad->Package->package_amount }}
+                            </td>
+                            <td>
+                                <div class="tg-btnsactions">
+                                    <a href="{{route('postad.show_bnb_ad_post',$ad->id)}}"><i class="icon-eye"></i></a>
+                                    <a href="{{route('postad.edit_bnb_ad',$ad->id)}}"><i class="icon-pencil"></i></a>
+                                
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-primary">Publish</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @foreach($carshire_ads as $ad)
+                        <tr data-category="active">
+                            <td>
+                                <span class="tom-checkbox">
+                                    <input id="tg-adone" type="checkbox" name="myads" value="myadone">
+                                    <label for="tg-adone"></label>
+                                </span>
+                            </td>
+                            <td><img src="{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px; margin-left: -28px;"></td>
+                            <td>
+                                <h6>{{ $ad->title }}</h6>
+                                <span>Ad ID: {{ $ad->id }}</span>
+                                
+                                <input type="hidden" name="bnb_ad_id[]" value="{{ $ad->id }}" multiple="true">
+                            </td>
+                            <td><h6>{{ $ad->Category->category_name }}</h6><span class="tg-adcategories">{{ $ad->Subcategory->subcategory_name }}</span></td>
+                            
+                            <td><span class="round btn-warning">Not Published</span></td>
+                            <td>
+                                <h6>{{ $ad->Package->package_name }}</h6>            
+                            </td>
+                            <td class="count-me">
+                                {{ $ad->Package->package_amount }}
+                            </td>
+                            <td>
+                                <div class="tg-btnsactions">
+                                    <a href="{{route('postad.show_carshire_ad_post',$ad->id)}}"><i class="icon-eye"></i></a>
+                                    <a href="{{route('postad.edit_carshire_ad',$ad->id)}}"><i class="icon-pencil"></i></a>
+                                
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-primary">Publish</a>
+                            </td>
+                        </tr>
+                        @endforeach
                     
                     
 

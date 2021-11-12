@@ -112,4 +112,7 @@ Route::post('/postad/house_ad_post/', 'PostAdController@store_house_ad_post')->n
 Route::get('/postad/land_ad_post/{category_id}/{subcategory_id}', 'PostAdController@create_land_ad_post')->name('postad.land_ad_post');
 Route::post('/postad/land_ad_post/', 'PostAdController@store_land_ad_post')->name('postad.store_land_ad_post');
 
+Route::get('/postad/bnb_ad_post/{category_id}/{subcategory_id}', 'PostAdController@create_bnb_ad_post')->name('postad.bnb_ad_post');
+Route::post('/postad/carshire_ad_post/', 'PostAdController@store_carshire_ad_post')->name('postad.store_carshire_ad_post');
+
 Route::post('/postad/apartment_ad_post/category/{category_id}/subcategory/{subcategory_id}', 'PostAdController@apartment_ad_post')->name('postad.apartment_ads_post');

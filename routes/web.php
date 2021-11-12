@@ -42,7 +42,11 @@ Route :: get ('/apartment_details/{appartment_ad}', 'PagesController@appartment_
 Route :: get ('/lands', 'PagesController@land_listing')->name('lands');
 Route :: get ('/land_details/{land_ad}', 'PagesController@land_details')->name('land_details');
 
+Route :: get ('/bnbs', 'PagesController@bnb_listing')->name('bnbs');
+Route :: get ('/bnb_details/{bnb_ad}', 'PagesController@bnb_details')->name('bnb_details');
 
+Route :: get ('/carshires', 'PagesController@carshire_listing')->name('carshires');
+Route :: get ('/carshire_details/{carshire_ad}', 'PagesController@carshire_details')->name('carshire_details');
 
 Route :: get ('/contact', 'PagesController@contact')->name('contact');
 
@@ -85,11 +89,16 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'namespace' =
     Route::get('/ads/house_ads', 'AdminAdsController@houseAds', ['as'=>'admin'])->name('admin.ads.house_ads');
     Route::get('/ads/land_ads', 'AdminAdsController@landAds', ['as'=>'admin'])->name('admin.ads.land_ads');
     Route::get('/ads/car_ads', 'AdminAdsController@carAds', ['as'=>'admin'])->name('admin.ads.car_ads');
+    Route::get('/ads/carshire_ads', 'AdminAdsController@carshireAds', ['as'=>'admin'])->name('admin.ads.carshire_ads');
+    Route::get('/ads/bnb_ads', 'AdminAdsController@bnbAds', ['as'=>'admin'])->name('admin.ads.bnb_ads');
+    
 
     Route::get('/ads/{apartment_ad}/apartment_ad_edit', 'AdminAdsController@editApartmentAd', ['as'=>'admin'])->name('admin.ads.edit_apartment_ad');
     Route::get('/ads/{house_ad}/house_ad_edit', 'AdminAdsController@editHouseAd', ['as'=>'admin'])->name('admin.ads.edit_house_ad');
     Route::get('/ads/{land_ad}/land_ad_edit', 'AdminAdsController@editLandAd', ['as'=>'admin'])->name('admin.ads.edit_land_ad');
     Route::get('/ads/{car_ad}/car_ad_edit', 'AdminAdsController@editCarAd', ['as'=>'admin'])->name('admin.ads.edit_car_ad');
+    Route::get('/ads/{carshire_ad}/carshire_ad_edit', 'AdminAdsController@editCarshireAd', ['as'=>'admin'])->name('admin.ads.edit_carshire_ad');
+    Route::get('/ads/{bnb_ad}/bnb_ad_edit', 'AdminAdsController@editBnbAd', ['as'=>'admin'])->name('admin.ads.edit_bnb_ad');
 
 
 });
@@ -141,6 +150,22 @@ Route::get('/postad/{land_ad}/land_ad_edit', 'PostAdController@edit_land_ad')->n
 Route::put('/postad/land_ad_update/{land_ad}', 'PostAdController@update_land_ad')->name('postad.update_land_ad');
 Route::delete('/postad/land_ad_destroy/{land_ad}', 'PostAdController@land_ad_destroy')->name('postad.destory_land_ad');
 Route::get('/postad/land_ad_pay/{land_ad}', 'PostAdController@pay_land_ad')->name('postad.pay_land_ad_post');
+
+Route::get('/postad/carshire_ad_post/{category_id}/{subcategory_id}', 'PostAdController@create_carshire_ad_post')->name('postad.carshire_ad_post');
+Route::post('/postad/carshire_ad_post/', 'PostAdController@store_carshire_ad_post')->name('postad.store_carshire_ad_post');
+Route::get('/postad/carshire_ad_show/{carshire_ad}', 'PostAdController@show_carshire_ad_post')->name('postad.show_carshire_ad_post');
+Route::get('/postad/{carshire_ad}/carshire_ad_edit', 'PostAdController@edit_carshire_ad')->name('postad.edit_carshire_ad');
+Route::put('/postad/carshire_ad_update/{carshire_ad}', 'PostAdController@update_carshire_ad')->name('postad.update_carshire_ad');
+Route::delete('/postad/carshire_ad_destroy/{carshire_ad}', 'PostAdController@carshire_ad_destroy')->name('postad.destory_carshire_ad');
+Route::get('/postad/carshire_ad_pay/{carshire_ad}', 'PostAdController@pay_carshire_ad')->name('postad.pay_carshire_ad_post');
+
+Route::get('/postad/bnb_ad_post/{category_id}/{subcategory_id}', 'PostAdController@create_bnb_ad_post')->name('postad.bnb_ad_post');
+Route::post('/postad/bnb_ad_post/', 'PostAdController@store_bnb_ad_post')->name('postad.store_bnb_ad_post');
+Route::get('/postad/bnb_ad_show/{bnb_ad}', 'PostAdController@show_bnb_ad_post')->name('postad.show_bnb_ad_post');
+Route::get('/postad/{bnb_ad}/bnb_ad_edit', 'PostAdController@edit_bnb_ad')->name('postad.edit_bnb_ad');
+Route::put('/postad/bnb_ad_update/{bnb_ad}', 'PostAdController@update_bnb_ad')->name('postad.update_bnb_ad');
+Route::delete('/postad/bnb_ad_destroy/{bnb_ad}', 'PostAdController@bnb_ad_destroy')->name('postad.destory_bnb_ad');
+Route::get('/postad/bnb_ad_pay/{bnb_ad}', 'PostAdController@pay_bnb_ad')->name('postad.pay_bnb_ad_post');
 
 Route::post('/user/user_cart/', 'OrderController@orders')->name('order');
 

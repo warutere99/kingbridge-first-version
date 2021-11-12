@@ -18,4 +18,12 @@ class Package extends Model
     public function car_ad(){
         return $this->hasMany('App\Car_ad');
     }
+    public function bnb_ad(){
+        return $this->hasMany('App\Bnb_ad');
+        
+    }
+
+    public function carshire_ad(){
+        return $this->hasMany('App\Carshire_ad');
+    }
 }

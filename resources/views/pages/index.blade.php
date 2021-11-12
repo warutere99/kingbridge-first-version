@@ -13,8 +13,10 @@
 				<div class="tab" >
 					<button class="tablinks" onclick="openCity('vehicle')">Vehicles</button>
 					<button class="tablinks" onclick="openCity('house')">Houses</button>
-					<button class="tablinks" onclick="openCity('appartment')">Appartment</button>
+					<button class="tablinks" onclick="openCity('appartment')">Apartments</button>
 					<button class="tablinks" onclick="openCity('land')">Land</button>
+					<button class="tablinks" onclick="openCity('bnb')">Bnb</button>
+					<button class="tablinks" onclick="openCity('carshires')">Car Hire</button>
 				  </div>
 
 
@@ -178,10 +180,10 @@
 
 <div id="appartment" class="tabcontent city" style="display:none">
 	<form action="{{ route('apartments')}}" method="get" class="form-group p-4 ftco-animate bg-gold"  style="width: 100%;border-radius: 6px;">
-	  <h4 class="text-white text-center">Houses for Sale in Kenya</h4>
+	  <h4 class="text-white text-center">Apartments for Sale in Kenya</h4>
 	  <div class="form-group">
 		  <select class="form-control  @error('title') is-invalid  @enderror" name="title'" >
-		  <option>Type of House</option>
+		  <option>Types of Apartment</option>
 		  <option>Apartment</option>
 		  <option>Townhouse</option>
 		  <option>House</option>
@@ -322,6 +324,133 @@
 	</div>
   </form>
 </div>
+
+
+
+<div id="bnb" class="tabcontent city" style="display:none">
+	<form action="{{ route('bnbs')}}" method="get" class="form-group p-4 ftco-animate bg-gold"  style="width: 100%;border-radius: 6px;">
+	  <h4 class="text-white text-center"> Vacation rentals in Kenya</h4>
+	  
+	  <div class="form-group">
+		  <select class="form-control  @error('city_id') is-invalid  @enderror" name="city_id" >
+		  <option value="">Location</option>
+		  @foreach ($cities as $city)
+		  <option value="{{$city->id}}">{{$city->city}}</option>
+		  @endforeach
+		</select>
+  
+		@error('city_id')
+		<span class="invalid-feedback" role="alert">
+			<strong>{{ $message }}</strong>
+		</span>
+		@enderror
+  
+	  </div>
+
+	  <div class="form-group">
+		<input id="dp3" type="text" class="form-control clickable input-md icon-calender" id="DtChkIn" placeholder="&#xf133;  Check-In">
+	  </div>
+	  <div class="form-group">
+		<input id="dp4" type="text" class="form-control clickable input-md icon-calender" id="DtChkOut" placeholder="&#xf133;  Check-Out">
+	  </div>
+
+	  <div class="d-flex">
+		<div class="form-group mr-2">
+		  <select class="form-control">
+			<option>Adults:</option>
+			<option>1</option>
+			<option>2</option>
+  
+		  </select>
+		</div>
+		<div class="form-group ml-2">
+		  <select class="form-control" >
+			<option>Children:</option>
+			<option>3</option>
+			<option>6</option>
+		  </select>
+		</div>
+	  </div>
+	 
+	  <div class="form-group">
+	  <input type="submit" value="Search Now" class="btn btn-dark w-100">
+	  </div>
+	</form>
+  </div>
+
+
+
+
+  <div id="carshires" class="tabcontent city" style="display:none">
+	<form action="{{ route('carshires')}}" method="get" class="form-group p-4 ftco-animate bg-gold"  style="width: 100%;border-radius: 6px;">
+		<h4 class="text-white text-center">Vehicles for Hire in Kenya</h4>
+	  <div class="form-group">
+		<select class="form-control  @error('make') is-invalid  @enderror" name="make" >
+			<option value="">Choose your Make </option>
+				<option>Audi</option>
+				<option>Toyota</option>
+				<option>Benz</option>
+				<option>Lamborghini</option>
+				<option>Subaru</option>
+				
+				
+		</select>
+				@error('make')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
+	  </div>
+	  
+	  
+	  <div class="d-flex">
+		<div class="form-group mr-2">
+			<select class="form-control  @error('model') is-invalid  @enderror" name="model" >
+				<option value="">Choose your Model </option>
+					<option>Toyota</option>
+					<option>Benz</option>
+					<option>Urus</option>
+					<option>R8</option>
+					<option>STI</option>
+			</select>
+					@error('model')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+					@enderror
+		</div>
+	  
+		
+	  </div>
+	  <div class="form-group">
+		<select class="form-control  @error('city_id') is-invalid  @enderror" name="city_id" >
+		<option value="">Location</option>
+		@foreach ($cities as $city)
+		<option value="{{$city->id}}">{{$city->city}}</option>
+		@endforeach
+	  </select>
+
+	  @error('city_id')
+	  <span class="invalid-feedback" role="alert">
+		  <strong>{{ $message }}</strong>
+	  </span>
+	  @enderror
+
+	</div>
+	 <div class="form-group">
+			<input id="dp1" class="icon-calender" type="text" class="form-control clickable input-md icon-calender" id="DtChkIn"  placeholder="&#xf133;  Hire on">
+		  </div>
+		  <div class="form-group">
+			<input id="dp2" class="icon-calender"type="text" class="form-control clickable input-md " id="DtChkOut" placeholder="&#xf133;  Returning date" >
+		  </div>
+	  <div class="form-group">
+	  <input type="submit" value="Search Now" class="btn btn-dark w-100">
+	  </div>
+	</form>
+	</div>
+
+	  
+
 </section>
    
     	<!--Main cocntent cars&Vehicles-->
@@ -705,6 +834,7 @@
 	  }
 	  document.getElementById(cityName).style.display = "block";  
 	}
+
 	</script>
 	
 	

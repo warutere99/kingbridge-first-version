@@ -13,6 +13,8 @@ use App\Car_ad;
 use App\Car_make;
 use App\Car_model;
 use App\Land_ad;
+use App\Bnb_ad;
+use App\Carshire_ad;
 use App\County;
 use App\City;
 use App\User;
@@ -32,6 +34,8 @@ class PostAdController extends Controller
        ->join('land_ads', 'user.id', '=', 'land_ads.user_id')
        ->join('appartment_ads', 'user.id', '=', 'appartment_ads.user_id')
        ->join('house_ads', 'user.id', '=', 'house_ads.user_id')
+       ->join('bnb_ads', 'user.id', '=', 'bnb_ads.user_id')
+       ->join('carshire_ads', 'user.id', '=', 'carshire_ads.user_id')
        ->select('car_ads.title', 'land_ads.title', 'house_ads.title')
        ->where('user_id',Auth::id())->take(10)
        ->get();
@@ -43,6 +47,8 @@ class PostAdController extends Controller
         $arr['house_ads'] = House_ad::where('user_id',Auth::id())->take(10)->get();
         $arr['car_ads'] = Car_ad::where('user_id',Auth::id())->take(10)->get();
         $arr['land_ads'] = Land_ad::where('user_id',Auth::id())->take(10)->get();
+        $arr['bnb_ads'] = Bnb_ad::where('user_id',Auth::id())->take(10)->get();
+        $arr['carshire_ads'] = Carshire_ad::where('user_id',Auth::id())->take(10)->get();
         
 
         $arr['all_ads'] = DB::table('users')
@@ -114,7 +120,7 @@ class PostAdController extends Controller
             $count = 0;
             if($request->File('photos')){
                 foreach($images as $item){
-                    if($count < 4){
+                    if($count < 5){
                         $var = date_create();
                         $date = date_format($var, 'Ymd');
                         $imageName = $date.'-'.$item->getClientOriginalName();
@@ -148,7 +154,7 @@ class PostAdController extends Controller
             $appartment_ad->package_id = $request->package_id;
             $appartment_ad->photos = $images;
             $appartment_ad->save();
-                }
+              }
                 return redirect() -> route('user.user_cart')->with('success','New Appartment Ad Added');
         }
 
@@ -653,5 +659,323 @@ class PostAdController extends Controller
         return view('user.postad.land_ad_pay')->with($arr);
     }
         
+
+   /**
+     * The Functionality of Bnb Ads.
+     */
+
+    public function create_bnb_ad_post( Category $category_id, Subcategory $subcategory_id){
+        $arr['subcategory'] =$subcategory_id;
+        $arr['category'] = $category_id;
+        $arr['counties'] = County::all();
+        $arr['cities'] = City::all();
+        return view('user.postad.bnb_ad_post')->with($arr);
+    }
+
+    public function store_bnb_ad_post(Request $request, Bnb_ad $bnb_ad){
+
+        $this->validate($request,[
+            'title' => 'required',
+            'ads_type' => 'required',
+            'address' => 'required',
+            'real_state_type' => 'required',
+            'condition' => 'required',
+            'price' => 'required',
+            'period' => 'required',
+            'bedroom' => 'required',
+            'bathroom' => 'required',
+            'square_meters' => 'required',
+            'amenities' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'county_id' => 'required',
+            'city_id' => 'required',
+            'user_id' => 'required',
+            'package_id' => 'required',
+            'photos' => 'required',
+            'parking' => 'required',
+            
+            ]);
+
+            $images = $request->File('photos');
+            $count = 0;
+            if($request->File('photos')){
+                foreach($images as $item){
+                    if($count < 5){
+                        $var = date_create();
+                        $date = date_format($var, 'Ymd');
+                        $imageName = $date.'-'.$item->getClientOriginalName();
+                        $item->storeAs('public/photos/', $imageName);
+                        $url = $imageName;
+                        $arr[] = $url;
+                        $count++;
+
+                    }
+                }
+                $images = implode(",", $arr);
+  
+            $bnb_ad->title = $request->title;
+            $bnb_ad->ads_type = $request->ads_type;
+            $bnb_ad->address = $request->address;
+            $bnb_ad->real_state_type = $request->real_state_type;
+            $bnb_ad->condition = $request->condition;
+            $bnb_ad->price = $request->price;
+            $bnb_ad->period = $request->period;
+            $bnb_ad->parking = $request->parking;
+            $bnb_ad->bedroom = $request->bedroom;
+            $bnb_ad->bathroom = $request->bathroom;
+            $bnb_ad->square_meters = $request->square_meters;
+            $bnb_ad->amenities = $request->amenities;
+            $bnb_ad->description = $request->description;
+            $bnb_ad->category_id = $request->category_id;
+            $bnb_ad->subcategory_id = $request->subcategory_id;
+            $bnb_ad->county_id = $request->county_id;
+            $bnb_ad->city_id = $request->city_id;
+            $bnb_ad->user_id = $request->user_id;
+            $bnb_ad->package_id = $request->package_id;
+            $bnb_ad->photos = $images;
+            $bnb_ad->save();
+                }
+                return redirect() -> route('user.user_cart')->with('success','New Bnb Ad Added');
+        }
+
+    public function show_bnb_ad_post(Bnb_ad $bnb_ad) {
+        $arr['bnb_ad'] = $bnb_ad;
+        $arr['categories'] = Category::select('category_name','id')->where('id',1)->get();
+        $arr['subcategories'] = Subcategory::select('subcategory_name','id')->where('category_id',1)->get();
+        $arr['counties'] = County::all();
+        $arr['cities'] = City::all();
+        return view('user.postad.bnb_ad_show')->with($arr);
+    }
+    public function edit_bnb_ad(Bnb_ad $bnb_ad) {
+        $arr['bnb_ad'] = $bnb_ad;
+        $arr['categories'] = Category::select('category_name','id')->where('id',1)->get();
+        $arr['subcategories'] = Subcategory::select('subcategory_name','id')->where('category_id',1)->get();
+        $arr['counties'] = County::all();
+        $arr['cities'] = City::all();
+        return view('user.postad.bnb_ad_edit')->with($arr);
+    }
+    public function update_bnb_ad(Request $request, Bnb_ad $bnb_ad){
+
+        $this->validate($request,[
+            'title' => 'required',
+            'ads_type' => 'required',
+            'real_state_type' => 'required',
+            'condition' => 'required',
+            'price' => 'required',
+            'bedroom' => 'required',
+            'bathroom' => 'required',
+            'square_meters' => 'required',
+            'amenities' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'county_id' => 'required',
+            'city_id' => 'required',
+            'package_id' => 'required',
+            'address' => 'required',
+            'period' => 'required',
+            'parking' => 'required',
+            ]);
+
+        
+            $bnb_ad->title = $request->title;
+            $bnb_ad->ads_type = $request->ads_type;
+            $bnb_ad->real_state_type = $request->real_state_type;
+            $bnb_ad->condition = $request->condition;
+            $bnb_ad->price = $request->price;
+            $bnb_ad->bedroom = $request->bedroom;
+            $bnb_ad->bathroom = $request->bathroom;
+            $bnb_ad->square_meters = $request->square_meters;
+            $bnb_ad->amenities = $request->amenities;
+            $bnb_ad->description = $request->description;
+            $bnb_ad->category_id = $request->category_id;
+            $bnb_ad->subcategory_id = $request->subcategory_id;
+            $bnb_ad->county_id = $request->county_id;
+            $bnb_ad->city_id = $request->city_id;
+            $bnb_ad->package_id = $request->package_id;
+            $bnb_ad->address = $request->address;
+            $bnb_ad->period = $request->period;
+            $bnb_ad->parking = $request->parking;
+            $bnb_ad->save();
+              
+                return redirect() -> route('user.user_cart')->with('success','Bnb Ad Updated Successfuly');
+        }
+
+    public function bnb_ad_destroy($id) {
+        $bnb_ad = Bnb_ad::find($id);
+        
+        $bnb_ad->delete(public_path().'/photos/'.$bnb_ad->photos);
+        return redirect() -> route('user.user_cart')->with('success','Removed Succesfully');;
+    }
+
+    public function pay_bnb_ad (Bnb_ad $bnb_ad) {
+        $arr['bnb_ad'] = $bnb_ad;
+        return view('user.postad.bnb_ad_pay')->with($arr);
+    }
+ 
+    /**
+     * The Functionality of Carshire Ads.
+    */
+
+    public function create_carshire_ad_post( Category $category_id, Subcategory $subcategory_id){
+        $arr['subcategory'] =$subcategory_id;
+        $arr['category'] = $category_id;
+        $arr['counties'] = County::all();
+        $arr['cities'] = City::all();
+        $arr['makes'] = Car_make::all();
+        $arr['model'] = Car_model::all();
+        return view('user.postad.car_ad_post')->with($arr);
+    }
+
+    public function store_carshire_ad_post(Request $request, Carshire_ad $carshire_ad){
+
+                $this->validate($request,[
+                    'title' => 'required',
+                    'ads_type' => 'required',
+                    'make' => 'required',
+                    'model' => 'required',
+                    'year_of_build' => 'required',
+                    'condition' => 'required',
+                    'mileage' => 'required',
+                    'transmission' => 'required',
+                    'fuel_type' => 'required',
+                    'price' => 'required',
+                    'description' => 'required',
+                    'category_id' => 'required',
+                    'subcategory_id' => 'required',
+                    'county_id' => 'required',
+                    'city_id' => 'required',
+                    'user_id' => 'required',
+                    'package_id' => 'required',
+                    'photos' => 'required',
+                    'color' => 'required',
+                    'body_type' => 'required',
+                    'interior_type' => 'required',
+                    'engine_size' => 'required',
+                    'duty_type' => 'required',
+                    
+                    
+                    ]);
+        
+                    $images = $request->File('photos');
+                    $count = 0;
+                    if($request->File('photos')){
+                        foreach($images as $item){
+                            if($count < 5){
+                                $var = date_create();
+                                $date = date_format($var, 'Ymd');
+                                $imageName = $date.'-'.$item->getClientOriginalName();
+                                $item->storeAs('public/photos/', $imageName);
+                                $url = $imageName;
+                                $arr[] = $url;
+                                $count++;
+        
+                            }
+                        }
+                        $images = implode(",", $arr);
+                    
+                    $carshire_ad->title = $request->title;
+                    $carshire_ad->ads_type = $request->ads_type;
+                    $carshire_ad->make = $request->make;
+                    $carshire_ad->model = $request->model;
+                    $carshire_ad->year_of_build = $request->year_of_build;
+                    $carshire_ad->condition = $request->condition;
+                    $carshire_ad->mileage = $request->mileage;
+                    $carshire_ad->transmission = $request->transmission;
+                    $carshire_ad->fuel_type = $request->fuel_type;
+                    $carshire_ad->price = $request->price;
+                    $carshire_ad->description = $request->description;
+                    $carshire_ad->category_id = $request->category_id;
+                    $carshire_ad->subcategory_id = $request->subcategory_id;
+                    $carshire_ad->county_id = $request->county_id;
+                    $carshire_ad->city_id = $request->city_id;
+                    $carshire_ad->user_id = $request->user_id;
+                    $carshire_ad->package_id = $request->package_id;
+                    $carshire_ad->photos = $images;
+                    $carshire_ad->color = $request->color;
+                    $carshire_ad->body_type = $request->body_type;
+                    $carshire_ad->interior_type = $request->interior_type;
+                    $carshire_ad->engine_size = $request->engine_size;
+                    $carshire_ad->duty_type = $request->duty_type;
+ 
+
+
+
+
+                    $carshire_ad->save();
+                        }
+                        return redirect() -> route('user.dashboard')->with('success','New Carshire Ad Added');
+    }
+
+    public function show_carshire_ad_post(Carshire_ad $carshire_ad) {
+                    $arr['carshire_ad'] = $carshire_ad;
+                    $arr['categories'] = Category::select('category_name','id')->where('id',1)->get();
+                    $arr['subcategories'] = Subcategory::select('subcategory_name','id')->where('category_id',2)->get();
+                    $arr['counties'] = County::all();
+                    $arr['cities'] = City::all();
+                    return view('user.postad.carshire_ad_show')->with($arr);
+    }
+
+    public function edit_carshire_ad(Carshire_ad $carshire_ad) {
+        $arr['carshire_ad'] = $carshire_ad;
+        $arr['categories'] = Category::select('category_name','id')->where('id',2)->get();
+        $arr['subcategories'] = Subcategory::select('subcategory_name','id')->where('category_id',2)->get();
+        $arr['counties'] = County::all();
+        $arr['cities'] = City::all();
+        return view('user.postad.carshire_ad_edit')->with($arr);
+    }
+    public function update_carshire_ad(Request $request, Carshire_ad $carshire_ad){
+
+        $this->validate($request,[ 750 colored 550
+            'title' => 'required',
+            'ads_type' => 'required',
+            'make' => 'required',
+            'model' => 'required',
+            'year_of_build' => 'required',
+            'condition' => 'required',
+            'mileage' => 'required',
+            'transmission' => 'required',
+            'fuel_type' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'county_id' => 'required',
+            'city_id' => 'required',
+            'package_id' => 'required',
+            ]);  
+            $carshire_ad->title = $request->title;
+            $carshire_ad->ads_type = $request->ads_type;
+            $carshire_ad->make = $request->make;
+            $carshire_ad->model = $request->model;
+            $carshire_ad->year_of_build = $request->year_of_build;
+            $carshire_ad->condition = $request->condition;
+            $carshire_ad->mileage = $request->mileage;
+            $carshire_ad->transmission = $request->transmission;
+            $carshire_ad->fuel_type = $request->fuel_type;
+            $carshire_ad->price = $request->price;
+            $carshire_ad->description = $request->description;
+            $carshire_ad->category_id = $request->category_id;
+            $carshire_ad->subcategory_id = $request->subcategory_id;
+            $carshire_ad->county_id = $request->county_id;
+            $carshire_ad->city_id = $request->city_id;
+            $carshire_ad->package_id = $request->package_id;
+            $carshire_ad->save();
+                
+                return redirect() -> route('user.user_cart')->with('success','your Carshire Ad has been updated');
+    }
+    public function carshire_ad_destroy($id) {
+        $carshire_ad = Carshire_ad::find($id);
+        
+        $carshire_ad->delete(public_path().'/photos/'.$car_ad->photos);
+        return redirect() -> route('user.user_cart')->with('success','Removed Succesfully');;
+    }
+    public function pay_carshire_ad (Carshire_ad $carshire_ad) {
+        $arr['carshire_ad'] = $carshire_ad;
+        return view('user.postad.carshire_ad_pay')->with($arr);
+    }
+
 
 }

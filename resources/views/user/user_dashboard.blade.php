@@ -203,7 +203,70 @@
                                           </td>
                                       </tr>
                                       @endforeach
-                                    
+                                      @foreach($bnb_ads as $ad)
+                                      <tr data-category="active">
+                                          <td>
+                                              <span class="tom-checkbox">
+                                                  <input id="tg-adone" type="checkbox" name="myads" value="myadone">
+                                                  <label for="tg-adone"></label>
+                                              </span>
+                                          </td>
+                                          <td><img src="/storage/photos/{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
+                                          <td>
+                                              <h6>{{ $ad->title }}</h6>
+                                              <span>Ad ID: {{ $ad->id }}</span>
+                                          </td>
+                                          <td><h6>{{ $ad->Category->category_name }}</h6><span class="tg-adcategories">{{ $ad->Subcategory->subcategory_name }}</span></td>
+                                          <td>Yes</td>
+                                          <td><span class="round btn-success">active</span></td>
+                                          <td>
+                                              <h6>Ksh {{ $ad->price }} </h6>            
+                                          </td>
+                                          <td>
+                                              <time datetime="2017-08-08">April 27, 2020</time>
+                                              <span>Published</span>
+                                          </td>
+                                          <td>
+                                              <div class="tg-btnsactions">
+                                                  <a href="javascript:void(0);"><i class="icon-eye"></i></a>
+                                                  <a href="javascript:void(0);"><i class="icon-pencil"></i></a>
+                                                  <a href="javascript:void(0);"><i class="icon-trash"></i></a>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      @endforeach
+                                      @foreach($carshire_ads as $ad)
+                                      <tr data-category="active">
+                                          <td>
+                                              <span class="tom-checkbox">
+                                                  <input id="tg-adone" type="checkbox" name="myads" value="myadone">
+                                                  <label for="tg-adone"></label>
+                                              </span>
+                                          </td>
+                                          <td><img src="/storage/photos/{{ strtok($ad->photos, ',') }}" width="70" height="70" alt="image description" style="border-radius: 16px margin-left: -28px;"></td>
+                                          <td>
+                                              <h6>{{ $ad->title }}</h6>
+                                              <span>Ad ID: {{ $ad->id }}</span>
+                                          </td>
+                                          <td><h6>{{ $ad->Category->category_name }}</h6><span class="tg-adcategories">{{ $ad->Subcategory->subcategory_name }}</span></td>
+                                          <td>Yes</td>
+                                          <td><span class="round btn-success">active</span></td>
+                                          <td>
+                                              <h6>Ksh {{ $ad->price }} </h6>            
+                                          </td>
+                                          <td>
+                                              <time datetime="2017-08-08">April 27, 2020</time>
+                                              <span>Published</span>
+                                          </td>
+                                          <td>
+                                              <div class="tg-btnsactions">
+                                                  <a href="javascript:void(0);"><i class="icon-eye"></i></a>
+                                                  <a href="javascript:void(0);"><i class="icon-pencil"></i></a>
+                                                  <a href="javascript:void(0);"><i class="icon-trash"></i></a>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      @endforeach
                                   
         
                                   </tbody>

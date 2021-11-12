@@ -7,6 +7,8 @@ use App\Appartment_ad;
 use App\House_ad;
 use App\Car_ad;
 use App\Land_ad;
+use App\Bnb_ad;
+use App\Carshire_ad;
 use App\County;
 use App\City;
 use Illuminate\Http\Request;
@@ -86,6 +88,7 @@ class PagesController extends Controller
         $arr['appartments'] = Appartment_ad::all();
         $arr['houses'] = House_ad::all();
         $arr['lands'] = Land_ad::all();
+        $arr['bnbs'] = Bnb_ad::all();
         return view ('pages.properties')->with($arr);
     }
 
@@ -165,6 +168,70 @@ class PagesController extends Controller
         $arr['lands'] = Land_ad::all();
         return view ('pages.land_details')->with($arr);
     }
+
+    Public function bnb(){
+        $arr['bnbs'] = Bnb_ad::all();
+        return view ('pages.bnbs')->with($arr);
+    }
+
+    Public function bnb_listing(Request $request){
+        $bnbs = bnb_ad::where([
+            ['title', '!=', Null],
+            ['city_id', '!=', Null],
+            [ function ($query) use ($request) {
+                if (( $bnb = $request->bnb)){
+                    $query->orWhere('title', 'LIKE', '%' .$title. '%')->get();
+                }
+                if (( $city_id = $request->city_id)){
+                    $query->orWhere('city_id', 'LIKE', '%' .$city_id. '%')->get();
+                }
+            }]
+
+        ])
+        ->orderBy("id", "desc")->take(10)->get();
+        return view ('pages.bnbs', compact('bnbs'));
+    }
+
+    Public function bnb_details(Bnb_ad $bnb_ad){
+        $arr['bnb_ad'] = $bnb_ad;
+        $arr['bnbs'] = Bnb_ad::all();
+        return view ('pages.bnb_details')->with($arr);
+    }
+
+
+
+    Public function carshire(Request $request, Carshire_ad $carshire_ad){
+        $arr['carshire_ad'] = $carshire_ad;
+        return view ('pages.carshire')->with($arr);
+    }
+
+
+    Public function carshire_listing(Request $request){
+        $carshires = Carshire_ad::where([
+            ['make', '!=', Null],
+            ['model', '!=', Null],
+            [ function ($query) use ($request) {
+                if (( $make = $request->make)){
+                    $query->orWhere('make', 'LIKE', '%' .$make. '%')->get();
+                }
+                if (( $model = $request->model)){
+                    $query->orWhere('model', 'LIKE', '%' .$model. '%')->get();
+                }
+            }]
+
+        ])
+        ->orderBy("id", "desc")->simplePaginate(10);
+        return view ('pages.carshires', compact('carshires'));
+     
+    }
+
+
+    Public function carshire_details(Car_ad $car_ad){
+        $arr['carshire'] = $carshire_ad;
+        $arr['carshires'] = Carshire_ad::where('make',$car_ad->make)->orderBy('make','DESC')->get();
+        return view ('pages.carshire_details')->with($arr);
+    }
+
 
     Public function contact(){
         return view ('pages.contact');

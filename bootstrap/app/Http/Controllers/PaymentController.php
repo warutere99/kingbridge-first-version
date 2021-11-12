@@ -7,6 +7,8 @@ use App\Appartment_ad;
 use App\House_ad;
 use App\Car_ad;
 use App\Land_ad;
+use App\Bnb_ad;
+use App\Carshire_ad;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -18,6 +20,8 @@ class PaymentController extends Controller
         $arr['house_ads'] = House_ad::where('user_id',Auth::id())->take(10)->get();
         $arr['car_ads'] = Car_ad::where('user_id',Auth::id())->take(10)->get();
         $arr['land_ads'] = Land_ad::where('user_id',Auth::id())->take(10)->get();
+        $arr['carshire_ads'] = Carshire_ad::where('user_id',Auth::id())->take(10)->get();
+        $arr['bnb_ads'] = Bnb_ad::where('user_id',Auth::id())->take(10)->get();
 
         return view('user.user_cart')->with($arr);
     }

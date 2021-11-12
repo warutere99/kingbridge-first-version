@@ -107,6 +107,8 @@
         {'value':'{{route('postad.car_ad_post', ['category_id'=>2, 'subcategory_id'=>2])}}', 'text':'Post Car Ad'},
         {'value':'{{route('postad.house_ad_post', ['category_id'=>1, 'subcategory_id'=>3])}}', 'text':'Post House Ad'},
         {'value':'{{route('postad.land_ad_post', ['category_id'=>1, 'subcategory_id'=>4])}}', 'text':'Post Land Ad'},
+        {'value':'{{route('postad.bnb_ad_post', ['category_id'=>1, 'subcategory_id'=>5])}}', 'text':'Post Bnb Ad'},
+        {'value':'{{route('postad.carshire_ad_post', ['category_id'=>2, 'subcategory_id'=>6])}}', 'text':'Post Carshire Ad'},
       
       ];
 

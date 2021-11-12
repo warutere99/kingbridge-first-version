@@ -19,6 +19,9 @@ class City extends Model
     public function house_ad(){
         return $this->hasMany('App\House_ad');
     }
+    public function bnb_ad(){
+        return $this->hasMany('App\Bnb_ad');
+    }
     public function user () {
         return $this->belongsTo('App\User');
     }

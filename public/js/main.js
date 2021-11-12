@@ -693,3 +693,125 @@ function previewFiles() {
 }
 //End of js for uploading image//
 
+//check in & check out dates BNB//
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+var checkin = $('#dp1').datepicker({
+
+  beforeShowDay: function(date) {
+    return date.valueOf() >= now.valueOf();
+  },
+  autoclose: true
+
+}).on('changeDate', function(ev) {
+  if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
+
+    var newDate = new Date(ev.date);
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.datepicker("update", newDate);
+
+  }
+  $('#dp2')[0].focus();
+});
+
+
+var checkout = $('#dp2').datepicker({
+  beforeShowDay: function(date) {
+    if (!checkin.datepicker("getDate").valueOf()) {
+      return date.valueOf() >= new Date().valueOf();
+    } else {
+      return date.valueOf() > checkin.datepicker("getDate").valueOf();
+    }
+  },
+  autoclose: true
+
+}).on('changeDate', function(ev) {});
+//End of check in & check out dates BNB//
+
+
+
+//car hire dates//
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+var checkin = $('#dp1').datepicker({
+
+  beforeShowDay: function(date) {
+    return date.valueOf() >= now.valueOf();
+  },
+  autoclose: true
+
+}).on('changeDate', function(ev) {
+  if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
+
+    var newDate = new Date(ev.date);
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.datepicker("update", newDate);
+
+  }
+  $('#dp2')[0].focus();
+});
+
+
+var checkout = $('#dp2').datepicker({
+  beforeShowDay: function(date) {
+    if (!checkin.datepicker("getDate").valueOf()) {
+      return date.valueOf() >= new Date().valueOf();
+    } else {
+      return date.valueOf() > checkin.datepicker("getDate").valueOf();
+    }
+  },
+  autoclose: true
+
+}).on('changeDate', function(ev) {});
+
+
+
+
+
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+var checkin = $('#dp3').datepicker({
+
+  beforeShowDay: function(date) {
+    return date.valueOf() >= now.valueOf();
+  },
+  autoclose: true
+
+}).on('changeDate', function(ev) {
+  if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
+
+    var newDate = new Date(ev.date);
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.datepicker("update", newDate);
+
+  }
+  $('#dp2')[0].focus();
+});
+
+
+var checkout = $('#dp4').datepicker({
+  beforeShowDay: function(date) {
+    if (!checkin.datepicker("getDate").valueOf()) {
+      return date.valueOf() >= new Date().valueOf();
+    } else {
+      return date.valueOf() > checkin.datepicker("getDate").valueOf();
+    }
+  },
+  autoclose: true
+
+}).on('changeDate', function(ev) {});
+
+
+
+var header = document.getElementById("myDIV");
+var btns = header.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}

@@ -85,6 +85,7 @@ class PagesController extends Controller
         $arr['appartments'] = Appartment_ad::all();
         $arr['houses'] = House_ad::all();
         $arr['lands'] = Land_ad::all();
+        $arr['bnb'] = Bnb_ad::all();
         return view ('pages.properties')->with($arr);
     }
 

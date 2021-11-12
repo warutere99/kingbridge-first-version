@@ -33,7 +33,16 @@ class SubcategoriesTableSeeder extends Seeder
                 'subcategory_name' => 'House_ads',
                 'category_id' => '1',
             ],
-        
+            [
+                'id'    => 5,
+                'subcategory_name' => 'Bnb_ads',
+                'category_id' => '1',
+            ],
+            [
+                'id'    => 6,
+                'subcategory_name' => 'Carshire_ads',
+                'category_id' => '2',
+            ],
         ];
 
         Subcategory::insert($Subcategories);

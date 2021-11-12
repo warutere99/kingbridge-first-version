@@ -42,6 +42,8 @@
                                     <a href="{{route('admin.ads.apartment_ads')}}" class="btn btn-default">Apartment Ads</a>
                                     <a href="{{route('admin.ads.house_ads')}}" class="btn btn-default">House Ads</a>
                                     <a href="{{route('admin.ads.land_ads')}}" class="btn btn-default">Land Ads</a>
+                                    <a href="{{route('admin.ads.bnb_ads')}}" class="btn btn-default">Bnb Ads</a>
+                                    <a href="{{route('admin.ads.carshire_ads')}}" class="btn btn-default">Carshire Ads</a>
                                 </div>
                               </div>
                                
